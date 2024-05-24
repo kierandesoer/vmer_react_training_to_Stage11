@@ -11,6 +11,7 @@ export const App = () => {
   return (
     <div style={{ width: '100%', backgroundColor: 'red', color: 'white', textAlign: 'center', padding: '20px'}}>
       <h1>Hello World!</h1>
+      <h2>Total count is {totalCounter % 2 === 0 ? 'even' : 'odd'}</h2>
       <Button buttonText='Click Me!' alertText='You clicked me!' totalCount={totalCounter} incrementTotalCount={incrementTotalCounter}/>
       <Button buttonText='And me!' alertText='WooHoo!' totalCount={totalCounter} incrementTotalCount={incrementTotalCounter}/>
       <Button buttonText="Please don't touch me!" alertText='Ouch!' totalCount={totalCounter} incrementTotalCount={incrementTotalCounter}/>

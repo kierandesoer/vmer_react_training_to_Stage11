@@ -1,10 +1,17 @@
-import {useState} from 'react';
+import { useState } from "react";
 
-export const Button = ({ buttonText, alertText }) => {
-    const [count, setCount] = useState(0);
+export const Button = ({ buttonText, alertText, totalCount, incrementTotalCount }) => {
+    const [counter, setCounter] = useState(0);
 
-    return <button onClick={() => {
-        alert(alertText);
-        setCount(count + 1);
-    }}>{buttonText} This button has been clicked {count} times!</button>
+    const onClick = () => {
+        setCounter(counter + 1 );
+        incrementTotalCount();
+        // alert("You've clicked me ${counter} times!\n You've clicked all the buttons a total of ${totalCount} times!");
+    }
+
+    return (
+        <div style={{ marginTop: '20px' }}>
+            <button onClick={onClick}>{buttonText} You've clicke me {counter}</button>
+        </div>
+    )
 }

@@ -19,8 +19,6 @@ export const Button = ({ buttonText, alertText, totalCount, incrementTotalCount 
     }
 
     return (
-        <div style={{ marginTop: '20px' }}>
-            <button onClick={onClick}>{buttonText}<br />You've clicked me {counter}</button>
-        </div>
+            <button style={{ marginRight: '20px' }} onClick={onClick}>{buttonText}<br />You've clicked me {counter}</button>
     )
 }

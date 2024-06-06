@@ -1,72 +1,65 @@
-import { Button } from 'components/Button';
-import { useState } from 'react';
+import { Button } from "components/Button";
+import { useState } from "react";
+
+const initialCarList = [
+  {
+    make: 'Ford',
+    name: 'Mustang'
+  },
+  {
+    make: 'Chevrolet',
+    name: 'Corvette'
+  },
+  {
+    make: 'Dodge',
+    name: 'Challenger'
+  },
+  {
+    make: 'Plymouth',
+    name: 'Roadrunner'
+  }
+]
 
 export const App = () => {
-  const [totalCounter, setTotalCounter] = useState(0);
-  const incrementTotalCounter = () => {
-    setTotalCounter(totalCounter + 1 );
+  const [totalCount, setTotalCount] = useState(0);
+  const incrementTotalCount = () => {
+    setTotalCount(totalCount + 1);
   }
-  // Create a list for display in list format
-  const people = [
-    {
-      name: 'Andrew',
-      age: 21,
-    },{
-      name: 'Mark',
-      age: 22,
-    },{
-      name: 'Luke',
-      age: 23,
-    },{
-      name: 'John',
-      age: 24,
-    }
-  ];
 
-  // make the list stateful
-  const [peopleList, setPeopleList] = useState(people);
-  const [personName, setPersonName] = useState('');
-  const [personAge, setPersonAge] = useState(0);
-  
-  // generate the list people for display
-  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
-  const listPeople = peopleList.map(person => 
-    <li><p>{person.name} is {person.age} years old.</p></li>
-  );
-
+  const [cars, setCars] = useState(initialCarList);
+  const [carMake, setCarMake] = useState('');
+  const [carName, setCarName] = useState('');
   return (
-    <div>
-      
-      <div style={{ width: '100%', backgroundColor: 'red', color: 'white', textAlign: 'center', padding: '20px'}}>
-        <h1>Hello World!</h1>
-        {/* Use a ternary if statement to mod by 2 */}
-        <h2>Total count is {totalCounter % 2 === 0 ? 'even' : 'odd'}</h2>
-        <Button buttonText='Click Me!' alertText='You clicked me!' totalCount={totalCounter} incrementTotalCount={incrementTotalCounter}/>
-        <Button buttonText='And me!' alertText='WooHoo!' totalCount={totalCounter} incrementTotalCount={incrementTotalCounter}/>
-        <Button buttonText="Please don't touch me!" alertText='Ouch!' totalCount={totalCounter} incrementTotalCount={incrementTotalCounter}/>
+    <>
+      <div style={{ height: '100vh', backgroundColor: 'red' }}>
+        <h1>Hello, World!</h1>
+        {totalCount % 2 === 0 ? <h2>Total count is even</h2> : <h2>Total count is odd</h2>}
+        <Button buttonText="Click me!" alertText="You clicked me!" totalCount={totalCount} incrementTotalCount={incrementTotalCount} />
+        <Button buttonText="Click me too!" alertText="You clicked me too!" totalCount={totalCount} incrementTotalCount={incrementTotalCount} />
+        <Button buttonText="Click me three!" alertText="You clicked me three!" totalCount={totalCount} incrementTotalCount={incrementTotalCount} />
+        <div>
+          <h2>Cars</h2>
+          {cars.map((car) => {
+            return <div>
+              <h3>{car.make}</h3>
+              <p>{car.name}</p>
+            </div>
+          })}
+        </div>
+        <div>
+          <label htmlFor="carmake">Car make</label>
+          <input type="text" placeholder="Enter car make" id="carmake" value={carMake} onChange={(event) => setCarMake(event.target.value)} />
+        </div>
+        <div>
+          <label htmlFor="carname">Car name</label>
+          <input type="text" placeholder="Enter car name" id="carname" value={carName} onChange={(event) => setCarName(event.target.value)} />
+        </div>
+        <div>
+          <button type="submit" onClick={() => {
+            setCars([...cars, { make: carMake, name: carName }])
+          }}>Submit</button>
+        </div>
       </div>
-    
-      <div>
-        <h1>List of People</h1>
-        <ul>{listPeople}</ul>
-      </div>
-      <div>
-        {/* 
-          The htmlFor property sets or returns the value of the for attribute of a label.
-          The for attribute specifies which form element a label is bound to.
-        */}
-        <label htmlFor="personName">Name: </label>
-        <input type='text' id='personName' value={personName} onChange={(e) => setPersonName(e.target.value)} />
-      </div>
-      <div>
-        <label htmlFor="personAge">Age: </label>
-        <input type='number' id='personAge' value={personAge} onChange={(e) => setPersonAge(Number(e.target.value))} />
-      </div>
-      <div>
-        <button type='submit' onClick={() => {
-          setPeopleList([...peopleList, {name: personName, age: personAge }])
-        }}>Add</ button>
-      </div>
-    </div>
+    </>
   );
 }

@@ -29,10 +29,9 @@ export const App = () => {
   const [personAge, setPersonAge] = useState(0);
   
   // generate the list people for display
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
   const listPeople = peopleList.map(person => 
-    <li>
-      <p>{person.name} is {person.age} years old.</p>
-    </li>
+    <li><p>{person.name} is {person.age} years old.</p></li>
   );
 
   return (
@@ -40,6 +39,7 @@ export const App = () => {
       
       <div style={{ width: '100%', backgroundColor: 'red', color: 'white', textAlign: 'center', padding: '20px'}}>
         <h1>Hello World!</h1>
+        {/* Use a ternary if statement to mod by 2 */}
         <h2>Total count is {totalCounter % 2 === 0 ? 'even' : 'odd'}</h2>
         <Button buttonText='Click Me!' alertText='You clicked me!' totalCount={totalCounter} incrementTotalCount={incrementTotalCounter}/>
         <Button buttonText='And me!' alertText='WooHoo!' totalCount={totalCounter} incrementTotalCount={incrementTotalCounter}/>
@@ -51,6 +51,10 @@ export const App = () => {
         <ul>{listPeople}</ul>
       </div>
       <div>
+        {/* 
+          The htmlFor property sets or returns the value of the for attribute of a label.
+          The for attribute specifies which form element a label is bound to.
+        */}
         <label htmlFor="personName">Name: </label>
         <input type='text' id='personName' value={personName} onChange={(e) => setPersonName(e.target.value)} />
       </div>

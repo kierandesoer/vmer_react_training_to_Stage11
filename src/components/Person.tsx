@@ -33,7 +33,7 @@ export const Person = ({person, deletePerson, editPerson}) => {
             <label htmlFor="editPersonAge">Age: </label>
             <input disabled={!state.editing} className={"displayInputBoxes_" + state.editing} type='number' placeholder="Entner New Age" id='editPersonAge' value={state.updatePersonAge} onChange={(e) => dispatch({ type: 'updatePersonAge', payload: e.target.value })} />
             <button style={{ marginLeft: 10 }} onClick={() => editOnClick({name: person.name, age: person.age}, {name: state.updatePersonName, age: state.updatePersonAge})}>{state.editing ? `Confirm` : `Edit`}</button>
-            <button style={{ marginLeft: 10 }} onClick={() => deletePerson({ name: person.name, age: person.age })}>Delete</button>
+            <button className={"displaInputBoxes_true"} onClick={() => deletePerson({ name: person.name, age: person.age })}>Delete</button>
         </div>
     </div>
 }

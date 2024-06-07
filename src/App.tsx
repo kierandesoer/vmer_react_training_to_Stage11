@@ -72,16 +72,17 @@ const editPerson = (originalPersonDetails, newPersonDetails) => {
         <h1>List of People</h1>
         {people.map((person) => <Person person={person} deletePerson={deletePerson} editPerson={editPerson} />)}
       </div>
-      <div style={{ backgroundColor: 'lightgrey', padding: 10,  }}>
+      <hr></hr>
+      <div style={{ padding: 10,  }}>
         {/* 
           The htmlFor property sets or returns the value of the for attribute of a label.
           The for attribute specifies which form element a label is bound to.
         */}
         Add New <br />
         <label htmlFor="personName">Name: </label>
-        <input type='text' id='personName' value={personName} onChange={(e) => setPersonName(e.target.value)} />
+        <input className={"displayInputBoxes_true"} type='text' id='personName' value={personName} onChange={(e) => setPersonName(e.target.value)} />
         <label htmlFor="personAge">Age: </label>
-        <input type='number' id='personAge' value={personAge} onChange={(e) => setPersonAge(Number(e.target.value))} />
+        <input className={"displayInputBoxes_true"} type='number' id='personAge' value={personAge} onChange={(e) => setPersonAge(Number(e.target.value))} />
         <button type='submit' onClick={() => {
           setPeopleList([...people, {name: personName, age: personAge }])
         }}>Add</ button>
